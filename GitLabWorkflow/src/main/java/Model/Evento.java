@@ -17,12 +17,10 @@ public class Evento {
 
     @Override
     public String toString() {
-        return "Evento{" +
-                "nome='" + nome + '\'' +
-                ", data=" + data +
-                ", localizacao='" + localizacao + '\'' +
-                ", valor=" + valor +
-                '}';
+        return nome +
+                " - Data:" + data +
+                " - Localizacao:'" + localizacao + '\'' +
+                " - Valor:" + valor;
     }
 
     public double getValor() {

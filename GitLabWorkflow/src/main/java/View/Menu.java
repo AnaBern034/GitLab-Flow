@@ -1,15 +1,19 @@
 package View;
 
 import Controller.ClienteController;
+import Data.Repository.ClienteRepository;
+import Data.Repository.EventoRepository;
 import Model.Cliente;
+import Model.Evento;
 import Model.Pagamento;
 import Model.PagamentoCartaoCredito;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.util.Scanner;
 
 public class Menu {
     private ClienteController clienteController = new ClienteController();
+    private ClienteRepository clienteRepository = new ClienteRepository();
+    private EventoRepository eventoRepository = new EventoRepository();
     public Cliente cadastrarCliente(){
         Scanner entrada = new Scanner(System.in);
         System.out.println("~~~~~~Cadastrando Cliente~~~~~~");
@@ -42,21 +46,42 @@ public class Menu {
     }
     public void venderIngressos(Cliente cliente){
         Scanner entrada = new Scanner(System.in);
-        //listar eventos
-
-        System.out.println("Digite o número do evento desejado:\n");
+        eventoRepository.listarEventos();
+        System.out.print("\nDigite o número do evento desejado: ");
         int escolha = entrada.nextInt();
-        System.out.println("Digite a quantidade de ingressos:\n");
+        Evento evento = eventoRepository.retornarEvento(escolha);
+        System.out.print("Digite a quantidade de ingressos: ");
         int quantidade = entrada.nextInt();
         System.out.println("Qual a forma de pagamento:\n1 - Cartão de Crédito" );
         int opcao = entrada.nextInt();
         Pagamento pagamento;
         if(opcao==1){
             pagamento = new PagamentoCartaoCredito();
-            pagamento.efetuarPagamento(0);
+            pagamento.efetuarPagamento(evento.getValor()*quantidade);
         }
 
     }
 
+    public Cliente login(){
+        Scanner entrada = new Scanner(System.in);
 
+        String email;
+        do{
+            System.out.print("Digite seu e-mail: ");
+            email = entrada.nextLine();
+
+            if(!email.contains("@")){
+                System.out.println("\nInforme um e-mail válido!\n");
+            }
+
+        }while (!email.contains("@"));
+
+        System.out.print("Digite sua senha: ");
+        String senha = entrada.next();
+
+        if(clienteRepository.procuraClienteEmail(email, senha) == null){
+            throw new IllegalArgumentException("Cliente não cadastrado");
+        }
+        return clienteRepository.procuraClienteEmail(email, senha);
+    }
 }
