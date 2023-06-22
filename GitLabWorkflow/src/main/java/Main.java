@@ -1,13 +1,10 @@
-import Model.Cliente;
 import View.Menu;
-
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         Menu menu = new Menu();
-        Cliente cliente;
 
         while (true){
             System.out.println("\n----------- SISTEMA DE VENDAS DE EVENTOS -----------");
@@ -18,24 +15,16 @@ public class Main {
                     """);
 
             try {
-                switch (entrada.nextInt()){
-                    case 1:
-                        cliente = menu.login();
-                        menu.venderIngressos(cliente);
-                        break;
-                    case 2:
-                        cliente = menu.cadastrarCliente();
-                        menu.venderIngressos(cliente);
-                        break;
-                    case 3:
-                        System.exit(0);
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Opcão inválida!");
+                switch (entrada.nextInt()) {
+                    case 1 -> menu.venderIngressos(menu.login());
+                    case 2 -> menu.venderIngressos(menu.cadastrarCliente());
+                    case 3 -> System.exit(0);
+                    default -> throw new IllegalArgumentException("Opcão inválida!");
                 }
             } catch (IllegalArgumentException erro){
                 System.err.println(erro.getMessage());
             }
         }
     }
+
 }

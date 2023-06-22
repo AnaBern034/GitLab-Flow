@@ -10,6 +10,10 @@ public class ClienteRepository {
 
     private List<Cliente> clientes =new ArrayList<>();
 
+    public ClienteRepository() {
+        iniciarRepository();
+    }
+
     public boolean clienteJaExiste(Cliente cliente) {
         for (Cliente c:clientes) {
             if (c.getCpf().equals(cliente.getCpf())||c.getEmail().equals(cliente.getEmail())) return true;
@@ -33,5 +37,12 @@ public class ClienteRepository {
     }
     public boolean verificaSenhaCriptografada(Cliente cliente,String senha){
         return BCrypt.checkpw(senha,cliente.getSenha());
+    }
+    public void iniciarRepository(){
+        adicionarCliente(new Cliente("João", "572.571.860-30", "joao@example.com","A#b3C"));
+        adicionarCliente(new Cliente("Maria", "246.564.540-44", "maria@example.com","X$y9Z"));
+        adicionarCliente(new Cliente("Pedro", "309.930.100-08", "pedro@example.com","M@p5Q"));
+        adicionarCliente(new Cliente("Ana", "863.325.530-81", "ana@example.com","L!k2J"));
+        adicionarCliente(new Cliente("Carlos", "201.479.790-05", "carlos@example.com","R#s8T"));
     }
 }

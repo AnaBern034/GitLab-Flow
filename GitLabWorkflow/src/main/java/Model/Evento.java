@@ -1,6 +1,7 @@
 package Model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Evento {
     private String nome;
@@ -17,13 +18,18 @@ public class Evento {
 
     @Override
     public String toString() {
-        return nome +
-                " - Data:" + data +
-                " - Localizacao:'" + localizacao + '\'' +
-                " - Valor:" + valor;
+        DateTimeFormatter formatarData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return "\nNome do Evento: "+nome+
+                "\nData: "+ data.format(formatarData)+
+                "\nLocalização: "+localizacao+
+                "\nValor Do Ingresso: "+valor;
     }
 
     public double getValor() {
         return valor;
+    }
+
+    public LocalDate getData() {
+        return data;
     }
 }

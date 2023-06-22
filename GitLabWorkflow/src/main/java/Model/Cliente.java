@@ -5,7 +5,11 @@ public class Cliente {
     private String email;
     private String cpf;
     private String senha;
-    public Cliente(String nome, String email, String cpf, String senha) {
+
+    public Cliente() {
+    }
+
+    public Cliente(String nome,String cpf,String email, String senha) {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;

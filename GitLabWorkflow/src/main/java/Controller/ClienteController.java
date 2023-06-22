@@ -21,4 +21,8 @@ public class ClienteController {
             return false;
         }
     }
+    public Cliente login(String email,String senha){
+        if (clienteRepository.procuraClienteEmail(email,senha)!= null) return clienteRepository.procuraClienteEmail(email,senha);
+        else throw new IllegalArgumentException("Cliente não cadastrado");
+    }
 }
