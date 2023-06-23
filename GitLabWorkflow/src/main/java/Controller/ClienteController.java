@@ -18,6 +18,7 @@ public class ClienteController {
             cpfValidator.assertValid(cpf);
             return true;
         }catch(Exception e){
+            System.out.println("\ncpf digitado invalido!\n");
             return false;
         }
     }
