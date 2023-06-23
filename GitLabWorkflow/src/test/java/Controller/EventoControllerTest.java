@@ -36,6 +36,11 @@ class EventoControllerTest {
         Assertions.assertThrows(IllegalArgumentException.class,()->eventoController.buscarEvento(anyInt()));
     }
 
+    @Test
+    void listarEventos(){
+
+    }
+
 
 
 }
