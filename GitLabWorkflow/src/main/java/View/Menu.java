@@ -60,11 +60,18 @@ public class Menu {
     }
 
     public Pagamento pagamentoCredito(){
-        System.out.println("Insira o numero do cartão:");
-        String numeroCartao = entrada.next();
-        System.out.println("Insira o seu CVV:");
-        int cvv = entrada.nextInt();
-        return new PagamentoCartaoCredito(numeroCartao,cvv);
+        while (true){
+            try {
+                System.out.println("Insira o numero do cartão:");
+                String numeroCartao = entrada.next();
+                System.out.println("Insira o seu CVV:");
+                String cvv = entrada.next();
+                return new PagamentoCartaoCredito(numeroCartao,cvv);
+            }catch (IllegalArgumentException erro){
+                System.out.println(erro.getMessage());
+            }
+        }
+
     }
 
 }
