@@ -3,10 +3,7 @@ package View;
 import Controller.ClienteController;
 import Controller.EventoController;
 import Controller.VendaController;
-import Model.Cliente;
-import Model.Evento;
-import Model.Pagamento;
-import Model.PagamentoCartaoCredito;
+import Model.*;
 
 import java.util.Scanner;
 
@@ -41,11 +38,15 @@ public class Menu {
         System.out.print("Digite a quantidade de ingressos: ");
         int quantidade = entrada.nextInt();
 
-        System.out.println("Qual a forma de pagamento:\n1 - Cartão de Crédito" );
+        System.out.println("Qual a forma de pagamento:\n1 - Cartão de Crédito\n2 - Pix" );
         int opcao = entrada.nextInt();
         Pagamento pagamento;
         if(opcao==1){
             pagamento = pagamentoCredito();
+            pagamento.efetuarPagamento(evento.getValor()*quantidade);
+            vendaController.vender(cliente,evento,quantidade,pagamento);
+        }else if(opcao==2){
+            pagamento = new PagamentoPix();
             pagamento.efetuarPagamento(evento.getValor()*quantidade);
             vendaController.vender(cliente,evento,quantidade,pagamento);
         }
