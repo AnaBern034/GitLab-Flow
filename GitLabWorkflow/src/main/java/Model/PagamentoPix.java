@@ -22,7 +22,4 @@ public class PagamentoPix implements Pagamento{
         return preco;
     }
 
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
 }
