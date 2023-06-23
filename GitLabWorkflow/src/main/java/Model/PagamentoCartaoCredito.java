@@ -4,7 +4,7 @@ public class PagamentoCartaoCredito implements Pagamento{
 
     private String numeroCartao;
     private int cvv;
-    private double valorCartao;
+    private double preco;
 
 
     public PagamentoCartaoCredito(String numeroCartao,int cvv) {
@@ -14,6 +14,11 @@ public class PagamentoCartaoCredito implements Pagamento{
 
     @Override
     public void efetuarPagamento(double valor) {
-        valorCartao = valor * 0.10;
+        preco = valor * 0.10;
+    }
+
+    public double getPreco() {
+        return preco;
+
     }
 }

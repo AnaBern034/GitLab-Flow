@@ -14,4 +14,9 @@ public class pagamentoPix implements Pagamento{
     public void efetuarPagamento(double valor) {
 
     }
+
+    @Override
+    public double getPreco() {
+        return 0;
+    }
 }
