@@ -11,7 +11,7 @@ public class VendaController {
         venda.setIngresso(evento);
         venda.setPagamento(pagamento);
         venda.setQuantidade(quantidade);
-        venda.setValorTotal(evento.getValor()*quantidade);
+        venda.setValorTotal(evento.getValor()*quantidade+pagamento.getPreco());
         vendaRepository.adicionarVenda(venda);
         System.out.println("--------------INGRESSO-----------------");
         System.out.println(venda.mostrarVenda());
